@@ -1,10 +1,10 @@
 {
-  "name": "electron-fcm-push-receiver",
+  "name": "invodesk-fcm-push-receiver",
   "version": "2.1.7",
   "description": "A module to receive FCM notifications in electron",
   "main": "src/index.js",
-  "repository": "https://github.com/ibrahim-ih/electron-fcm-push-receiver",
-  "author": "ibrahim-ih",
+  "repository": "https://github.com/InvoZone/invodesk-fcm-push-receiver",
+  "author": "M.Bilal",
   "license": "MIT",
   "types": "src/electron-fcm-push-receiver.d.ts",
   "dependencies": {
