@@ -69,16 +69,21 @@ function reset() {
   started = false;
 }
 
-// Will be called on new notification
 function onNotification(webContents) {
-  return ({notification, persistentId}) => {
-    const persistentIds = config.get('persistentIds') || [];
+  return ({ notification, persistentId }) => {
+    let persistentIds = config.get('persistentIds') || [];
+    // Remove oldest element if the array length exceeds 10
+    if (persistentIds.length >= 10) {
+      persistentIds.shift();
+    }
     // Update persistentId
-    config.set('persistentIds', [...persistentIds, persistentId]);
+    persistentIds.push(persistentId);
+    config.set('persistentIds', persistentIds);
     // Notify the renderer process that a new notification has been received
-    // And check if window is not destroyed for darwin Apps
+    // And check if the window is not destroyed for darwin Apps
     if (!webContents.isDestroyed()) {
       webContents.send(NOTIFICATION_RECEIVED, notification);
     }
   };
 }
+
